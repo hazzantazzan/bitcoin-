@@ -12,9 +12,10 @@ st.title("📈 Bitcoin Price Forecasting with LSTM")
 
 @st.cache_data
 def load_data():
-    df = yf.download('BTC-USD', start='2017-01-01', end='2024-12-31', progress=False)
-
-df.reset_index(inplace=True)
+    df = yf.download('BTC-USD', start='2017-01-01', end='2024-12-31')
+    df = df[['Close']]
+    df.dropna(inplace=True)
+    return df
 
 def preprocess(df, seq_len=60):
     scaler = MinMaxScaler()
