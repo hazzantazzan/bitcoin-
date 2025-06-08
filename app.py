@@ -14,12 +14,6 @@ st.title("📈 Bitcoin Price Forecasting with LSTM")
 def load_data():
     df = yf.download('BTC-USD', start='2017-01-01', end='2024-12-31', progress=False)
 st.write(df.head())
-    
-    if 'Close' in df.columns:
-    df = df[['Close']]
-else:
-    st.error("The 'Close' column was not found in the downloaded data.")
-    return pd.DataFrame()
 
 df.reset_index(inplace=True)
 
