@@ -14,17 +14,15 @@ st.title("📈 Bitcoin Price Forecasting with LSTM")
 def load_data():
     df = yf.download('BTC-USD', start='2017-01-01', end='2024-12-31', progress=False)
     
-    # Ensure df is not empty
     if df.empty:
         st.error("Failed to load BTC-USD data. Please check your internet or the ticker symbol.")
         return pd.DataFrame()
     
-    # Check that 'Close' column exists
     if 'Close' not in df.columns:
         st.error("The 'Close' column was not found in the downloaded data.")
         return pd.DataFrame()
-    
-    df = df[['Close']]  # Select only the Close column
+
+    df = df[['Close']]
     df.dropna(inplace=True)
     return df
 
